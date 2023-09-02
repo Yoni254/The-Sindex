@@ -55,7 +55,15 @@ h1 {
 }
 
 h2 {
-    font-size: 112px
+    font-size: 80px
+}
+
+h3 {
+    font-size: 50px
+}
+
+h4 {
+    font-size: 30px
 }
 
 p {
@@ -63,12 +71,126 @@ p {
 }
 
 button {
-    background-color: #5fa8d3; /* Green */
+    background-color: #5fa8d3;
     border: none;
-    color: #cae9ff;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.file-input {
+    display: none;
+}
+
+.custom-file-input {
+    display: inline-block;
+    margin: 25%;
+    padding: 10px 20px;
+    background-color: #5fa8d3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.toggleable-button {
+    pointer-events: none; /* Disable pointer events when button is disabled */
+    opacity: 0.6; /* Dim the button when disabled */
+}
+
+.toggleable-button.enabled {
+    pointer-events: auto; /* Disable pointer events when button is disabled */
+    opacity: 1; /* Dim the button when disabled */
+}
+
+#uploadBox {
+    border: 2px dashed black;
+    border-radius: 10px;
+    margin-left: 35%;
+    margin-bottom: 10px;
+    width: 30%;
+}
+
+#fileContent {
+    width: 80%;
+    height: 500px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+#detailsForm label,
+#detailsForm input,
+#detailsForm button {
+    margin-bottom: 10px;
+}
+
+.segment-table {
+    width: 70%; /* Adjust the width as needed */
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 2px solid #dddddd;
+    font-size: 14px;
+}
+
+.segment-table th,
+.segment-table td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.segment-table th {
+    background-color: #5fa8d3;
+}
+
+.segment-table textarea {
+    width: 90%;
+    text-align: left;
+    padding: 8px;
+    margin: 0;
+}
+
+
+#explanation {
+    background-color: white;
+    color: black;
+    margin-top: 10px;
+    margin-left: 39.5%;
+    width: 20%;
+    display: none;
+    opacity: 0.9;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+}
+
+#searchInput {
+    width: 45%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+
+#searchInput:focus {
+    border-color: #66afe9;
+    border-width: 4px;
+}
+
+.selected-row {
+    border-color: black;
+    border-width: 4px;
+    background-color: #112e42;
 }

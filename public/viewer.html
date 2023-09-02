@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sindex</title>
+    <link rel="stylesheet" href="viewerStyle.css">
+
+</head>
+<body>
+
+<header>
+    <h1>The Sindex - Song Viewer</h1>
+</header>
+
+<div class="container">
+    <div class="side-stripe">
+        <div class="button-box">
+            <h3>Action Buttons</h3>
+            <div class="action-div">
+                <button class="side-button" onclick="openGroupManage()">Manage Groups</button>
+                <button id="groupWordAddOpenButton" class="side-button" onclick="openWordAdd()" disabled>Add Selected Word To Group</button>
+                <button class="side-button" onclick="openWordRemove()">Remove Words From Group</button>
+                <button id="phraseAddOpenButton" class="side-button" onclick="openPhraseAdd()" disabled>Create New Phrase</button>
+                <button class="side-button" onclick="openPhraseRemove()">Remove Phrases</button>
+
+                <div class="lightbox" id="groupManageLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="groupManageCloseButton" onclick="closeLightbox('groupManageLightbox')">&times;</button>
+
+                        <h1 class="lightbox-text">Group Manager</h1>
+                        <button class="lightbox-button" onclick="openAndClose('groupAddDiv', 'groupRemoveDiv')">Add Group</button>
+                        <button class="lightbox-button" onclick="openAndClose('groupRemoveDiv', 'groupAddDiv')">Remove Group</button>
+                        <div id="groupAddDiv" class="lightbox-form openable">
+                            <label for="gName">Name:</label>
+                            <input type="text" id="gName" name="name" placeholder="Enter group name...">
+
+                            <label for="gDescription">Description:</label>
+                            <textarea id="gDescription" name="description" placeholder="Enter a group description" ></textarea>
+
+                            <button class="lightbox-button" onclick="groupAdd()">Submit</button>
+                        </div>
+                        <div class="lightbox-table-container">
+                            <table id="groupTable">
+                                <thead>
+                                <tr>
+                                    <th class="stretch">Group Name</th>
+                                    <th class="stretch">Group Description</th>
+                                </tr>
+                                </thead>
+                                <tbody class="lightboxTableRows">
+
+                                </tbody>
+                            </table>
+
+                            <div id="groupRemoveDiv" class="openable">
+                                <button class="lightbox-button" onclick="groupRemove()">Confirm Removal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lightbox" id="groupWordAddLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="groupWordAddCloseButton" onclick="closeLightbox('groupWordAddLightbox')">&times;</button>
+
+                        <h1 id="wordAdditionSelectedWordDisplay" class="lightbox-text">selected word goes here</h1>
+                        <h4 class="lightbox-text">Which group(s) would you like to add this word to?</h4>
+
+                        <div class="lightbox-table-container">
+                            <table id="groupWordAddTable">
+                                <thead>
+                                <tr>
+                                    <th class="stretch">Group Name</th>
+                                    <th class="stretch">Group Description</th>
+                                </tr>
+                                </thead>
+                                <tbody class="lightboxTableRows">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="lightbox-button" onclick="addWord()">Submit</button>
+
+                    </div>
+                </div>
+
+                <div class="lightbox" id="groupWordRemoveLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="groupWordRemoveCloseButton" onclick="closeLightbox('groupWordRemoveLightbox')">&times;</button>
+                        <h1 class="lightbox-text">Word Removal</h1>
+                        <div id="removalGroupSelection" class="closeable">
+                            <h4 class="lightbox-text">Select group to remove from</h4>
+                            <div class="lightbox-table-container">
+                                <table id="groupWordRemoveTable1">
+                                    <thead>
+                                    <tr>
+                                        <th class="stretch">Group Name</th>
+                                        <th class="stretch">Group Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="lightboxTableRows">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="lightbox-button" onclick="groupWordRemoveContinue()">Continue</button>
+                        </div>
+
+                        <div id="removalWordSelection" class="openable">
+                            <h4 class="lightbox-text">Select words to remove</h4>
+                            <div class="lightbox-table-container ">
+                                <table id="groupWordRemoveTable2">
+                                    <thead>
+                                    <tr>
+                                        <th class="stretch">Word</th>
+                                        <th class="stretch">Group</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="lightboxTableRows">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="lightbox-button" onclick="openAndClose('removalGroupSelection', 'removalWordSelection')">Back</button>
+                            <button class="lightbox-button" onclick="removeWord()">Continue</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="lightbox" id="phraseAddLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="phraseAddCloseButton" onclick="closeLightbox('phraseAddLightbox')">&times;</button>
+
+                        <h1 id="phraseAdditionSelectedDisplay" class="lightbox-text">selected word goes here</h1>
+                        <h4 class="lightbox-text">Are you sure this is the phrase you wish to add?</h4>
+                        <p id="phraseAddSelectionGuide" class="lightbox-text"></p>
+                        <button class="lightbox-button" onclick="phraseAdd()">Submit</button>
+                    </div>
+                </div>
+
+                <div class="lightbox" id="phraseRemoveLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="phraseRemoveCloseButton" onclick="closeLightbox('phraseRemoveLightbox')">&times;</button>
+
+                        <h1 class="lightbox-text">Phrase Removal</h1>
+
+                        <div id="removalPhraseSelection">
+                            <h4 class="lightbox-text">Select phrase(s) to remove</h4>
+                            <div class="lightbox-table-container">
+                                <table id="phraseRemoveTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Selected?</th>
+                                        <th class="stretch">Phrase</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="lightboxTableRows">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="lightbox-button" onclick="phraseRemove()">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lightbox" id="searchOptionsLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="searchOptionCloseButton" onclick="closeLightbox('searchOptionsLightbox')">&times;</button>
+                        <h1 class="lightbox-text">Select search type</h1>
+                        <button class="lightbox-button" onclick="openPhraseSearch()">By created phrase</button>
+                        <button class="lightbox-button" onclick="openAndClose('searchByWordDiv', 'searchOptionsLightbox')">By word(s)</button>
+                        <button class="lightbox-button" onclick="openAndClose('searchByLocationDiv', 'searchOptionsLightbox')">By location</button>
+                    </div>
+                </div>
+
+                <div class="lightbox" id="phraseSearchLightbox">
+                    <div class="lightbox-content">
+                        <button class="close-button" id="phraseSearchCloseButton" onclick="closeLightbox('phraseSearchLightbox')">&times;</button>
+
+                        <h1 class="lightbox-text">Search By Phrase</h1>
+                        <h4 class="lightbox-text">Select phrase to search</h4>
+                        <div class="lightbox-table-container">
+                            <table id="phraseSearchTable">
+                                <thead>
+                                <tr>
+                                    <th>Selected?</th>
+                                    <th class="stretch">Phrase</th>
+                                </tr>
+                                </thead>
+                                <tbody class="lightboxTableRows">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="lightbox-button" onclick="phraseSearch()">Confirm</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="search-button-div">
+                <button class="search-side-button" onclick="openSearchOption()">Search Options</button>
+            </div>
+        </div>
+    </div>
+    <div class="center-div">
+        <div class="upper-half">
+            <div id="contextTextArea" class="side-textArea"></div>
+            <button id="segmentExpander" class="boxed-text" onclick="viewSegment()" disabled>Segment Viewer</button>
+            <div class="lightbox" id="segmentLightbox">
+                <div class="lightbox-content">
+                    <button class="close-button" id="segmentCloseButton" onclick="closeLightbox('segmentLightbox')">&times;</button>
+                    <h1 id="segmentLightboxH1" class="lightbox-text">Segment Viewer</h1>
+                    <h2 id="segmentLightboxH2" class="lightbox-text">Segment Viewer</h2>
+                    <p id="segmentLightboxText" class="lightbox-text">This is the text that you want to display.</p>
+                </div>
+            </div>
+
+            <div class="arrow-buttons">
+                <button id="previousButton" class="arrow-button" onclick="previousWord()" disabled>&larr;</button>
+                <button id="nextButton" class="arrow-button" onclick="nextWord()" disabled>&rarr;</button>
+            </div>
+        </div>
+        <div class="lower-half">
+            <div class="left-side">
+                <div class="upper-left">
+                    <p><u>Word Details:</u></p>
+                </div>
+                <div class="stripe"></div>
+                <div class="lower-left">
+                    <p><u>Song Details:</u></p>
+                </div>
+            </div>
+            <div id="SelectionCheck" class="right-side">
+                <textarea id="fullTextDisplay" class="side-textArea" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="side-stripe">
+        <div class="menu-box">
+            <h3>Word Menu</h3>
+            <div class="menu-content">
+                <div class="table-container">
+                    <table id="words-table">
+                        <thead>
+                            <tr>
+                                <th class="openable">SID</th>
+                                <th class="stretch">Word</th>
+                                <th class="stretch">Segment</th>
+                                <th>Line</th>
+                                <th>Index</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h3>Filters</h3>
+            <div class="filters">
+                <select onchange="filterUpdate()" id="groupFilter" class="dropdown">
+                    <option value="-1">By Group</option>
+                </select>
+                <select onchange="filterUpdate()" id="segmentFilter" class="dropdown">
+                    <option value="-1">By Segment</option>
+                </select>
+                <select onchange="filterUpdate()" id="songFilter" class="dropdown">
+                    <option value="-1">By Song</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-div">
+    <div id="searchByWordDiv" class="openable">
+        <label id="searchText" for="searchInput"></label>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button class="search-button" onclick="wordSearchButton()">Search</button>
+    </div>
+
+    <div id="searchByLocationDiv" class="openable">
+        <select id="searchLocationSong" onchange="songSearchChange()" class="search-dropdown">
+            <option value="-1">Select Song</option>
+        </select>
+        <select id="searchLocationSegment" onchange="segmentSearchChange()" class="search-dropdown" disabled>
+            <option value="-1">Select Segment</option>
+        </select>
+        <select id="searchLocationLine" class="search-dropdown" disabled>
+            <option value="-1">Select Line</option>
+        </select>
+        <label id="searchLine" for="searchLineInput"></label>
+        <input type="number" id="searchLineInput" placeholder="Select index (optional)" min="0">
+        <button class="search-button" onclick="locationSearch()">Search</button>
+    </div>
+
+
+</div>
+
+<script src="viewer.js"></script>
+<script src="viewerRoutes.js"></script>
+<script src="viewerButtons.js"></script>
+
+</body>
+</html>

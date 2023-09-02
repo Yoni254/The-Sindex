@@ -1,0 +1,482 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #1b4965;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+header {
+    text-align: center;
+}
+
+h1 {
+    margin: 10px;
+    font-size: 60px;
+    color: white;
+}
+
+h3 {
+    margin: 10px;
+    font-size: 40px;
+    color: white;
+}
+
+h4 {
+    margin: 10px;
+    font-size: 25px;
+    color: white;
+}
+
+p {
+    font-size: 14px;
+    color: white;
+}
+
+#contextTextArea {
+    background-color: white;
+    font-size: 24px;
+}
+
+.highlight {
+    background-color: orange;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.center-div {
+    flex: 2;
+    background-color: #10222e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-half {
+    flex: 1;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.boxed-text {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.arrow-buttons {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+}
+.arrow-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow-button:focus {
+    outline: none;
+}
+
+.arrow-button:disabled {
+    opacity: 0.6;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.lightbox-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.lightbox-table-container, .lightbox-form {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.lightbox-table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.lightbox-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lightbox-form {
+    max-width: 400px;
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.lightbox-button:hover {
+    background-color: #2980b9;
+}
+
+.lightbox-button:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(52, 152, 219, 0.7);
+}
+
+.lightbox-text {
+    color: black;
+}
+
+#segmentLightboxText {
+    font-size: 18px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+.lower-half {
+    flex: 1;
+    display: flex;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    position: relative;
+}
+
+.stripe {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: darkgray;
+    transform: translateY(-50%);
+}
+
+.upper-left, .lower-left {
+    flex: 1;
+    background-color: #3f8098;
+    padding: 10px;
+}
+
+.upper-left {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.lower-left {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.right-side {
+    flex: 1;
+    background-color: #10222e;
+    padding-bottom: 5px;
+}
+
+.side-textArea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.side-stripe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10222e;
+    flex: 1;
+    padding: 20px;
+}
+
+.menu-box {
+    width: 100%;
+    height: 93%;
+    border: 2px solid #1b4965;;
+    padding: 20px;
+    background-color: #3f8098;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.menu-content {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    height: 200px; /* Fixed height for the table */
+    overflow: auto;
+    border: 2px solid #1b4965;
+    display: flex;
+}
+
+table {
+    color: white;
+    border-collapse: collapse;
+    background-color: #5c8da6;
+}
+
+th, td {
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 2px;
+}
+
+th {
+    font-size: 18px;
+}
+
+.lightboxTableRows {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #1b4965;
+    z-index: 1;
+}
+
+.selected-row {
+    color: black;
+    border-color: black;
+    border-width: 4px;
+    background-color: #a5c2d7;
+}
+
+th.stretch, td.stretch {
+    width: 200px;
+}
+
+
+.filters {
+    margin-top: 20px;
+}
+
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg fill="%23333" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M6.293 8.293a1 1 0 0 1 1.414 0L9 9.586l1.293-1.293a1 1 0 0 1 1.414 1.414l-2 2a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 0-1.414z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+.dropdown:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+.dropdown option {
+    background-color: white;
+    color: #333;
+}
+
+.button-box {
+    border-radius: 10px;
+    width: 90%;
+    height: 93%;
+    border: 2px solid #1b4965;;
+    padding: 20px;
+    background-color: #3f8098;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.action-div {
+    border: 2px solid #1b4965;;
+    padding: 10px;
+}
+
+.side-button, .search-side-button {
+    margin-bottom: 10px;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #a5c2d7;
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%; /* Ensure buttons have the same width as menu box */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.search-side-button {
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.side-button:hover, .search-button:hover {
+    background-color: #cae9ff;
+}
+
+.side-button:disabled, .search-button:disabled {
+    opacity: 0.6;
+}
+
+.bottom-div {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#searchInput {
+    width: 45%;
+    padding: 8px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+
+#searchInput:focus {
+    border-color: #66afe9;
+    border-width: 2px;
+}
+
+.search-button {
+    background-color: #a5c2d7;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.search-dropdown {
+    width: 12%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg fill="%23333" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M6.293 8.293a1 1 0 0 1 1.414 0L9 9.586l1.293-1.293a1 1 0 0 1 1.414 1.414l-2 2a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 0-1.414z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+#searchLineInput {
+    width: 12%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+#searchLine {
+    display: none;
+
+}
+
+.openable {
+    display: none;
+}

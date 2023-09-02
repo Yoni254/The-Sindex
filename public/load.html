@@ -2,22 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>The Sindex</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
 <div class="top">
-    <h2>drop file here</h2>
+    <h2 id="uploadMsg">The Sindex - File Uploader</h2>
+
+    <div id="formatData" style="display: none;">
+        <h3>Before you upload to server, please make sure the file matches the correct format!</h3>
+        <br/>
+        <p>The different song parts should be marked by one of the following: <b>[Intro], [Chorus], [Bridge], [Outro]</b> or <b>[Verse n]</b> n being a natural number</p>
+        <p>Incorrect markings may cause the final uploaded to file</p>
+    </div>
+
+    <div id="detailsData" style="display: none;">
+        <h3>Almost Done!</h3>
+        <p>Last step before we add your song to the database</p>
+        <p>Please fill out the remaining details and confirm the segments were divided correctly</p>
+    </div>
 </div>
 
 <div class="center">
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload</button>
-    </form>
+    <div id="uploadArea">
+        <div id="uploadBox">
+            <label for="fileInput" class="custom-file-input">Choose a *.txt File</label>
+            <input type="file" id="fileInput" class="file-input">
+        </div>
+        <p id="selectedFileName">Waiting for upload</p>
+        <button id="submitButton" onclick="uploadFile()" class="toggleable-button">Upload</button>
+    </div>
+
+    <div id="textContentArea" style="display: none;">
+        <textarea id="fileContent"></textarea>
+        <br/>
+        <button onclick="saveChanges()">Save Changes</button>
+        <button onclick="discardChanges()">Discard</button>
+    </div>
+
+    <div id="detailsForm" style="display: none;">
+        <h4>Additional Information:</h4>
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName"><br>
+        <label for="singer">Singer(s):</label>
+        <input type="text" id="singer"><br>
+        <label for="releaseDate">Release Date:</label>
+        <input type="date" id="releaseDate"><br>
+        <label for="album">Album (optional):</label>
+        <input type="text" id="album"><br>
+        <button onclick="saveDetails()">Save Details</button>
+        <div style="height: 30px"></div>
+
+
+        <div id="recognizedSegments">
+            <h4>Recognized Segments:</h4>
+            <table class="segment-table">
+                <thead>
+                <tr>
+                    <th>Token</th>
+                    <th>Segment Text</th>
+                </tr>
+                </thead>
+                <tbody id="segmentList" class="segment-list"></tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-
+<script src="load.js"></script>
 </body>
 </html>

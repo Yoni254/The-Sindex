@@ -2,14 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sindex</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="top">
-    <h2>what to search?</h2>
+    <h2>The Sindex - Search</h2>
+</div>
+<div class="center" id="searchOptions">
+    <h3>Select your input type</h3>
+    <br/>
+
+    <button id="nameSearch" onclick="nameSearch() ">Song Data</button>
+    <button id="lyricsSearch" onclick="lyricsSearch()">Song Lyrics</button>
+    <button id="groupSearch" onclick="groupSearch()">By Group</button>
+    <button id="allData" onclick="allData()">Fetch All Data</button>
+
+    <div id="explanation">Search by song name / singer(s) / album </div>
+
+
+    <div id="searchInputDiv" style="display: none; margin-top: 60px;">
+        <label id="searchText" for="searchInput"></label>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button id="searchButton" onclick="searchClick()">Search</button>
+    </div>
+
+
+    <div id="searchResultsDiv" style="display: none; margin-top: 40px;">
+        <p>Select your options before pressing next or select input type again</p>
+        <table id="resultsTable" class="segment-table">
+            <thead>
+            <tr>
+                <th>Selected?</th>
+                <th style="display: none;">SID</th>
+                <th>Song Name</th>
+                <th>Singer(s)</th>
+                <th>Release Date</th>
+                <th>Album</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="nextButton" onclick="searchDone()" class="toggleable-button">Next</button>
+    </div>
 </div>
 
+<script src="search.js"></script>
 </body>
 </html>
